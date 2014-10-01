@@ -35,4 +35,3 @@ describe "Slack", ->
       ]
 
     attachment.fallback.should.eql "Pretext\n| text\n|  T1\n|  V1\n|  T2\n|  V2"
-
