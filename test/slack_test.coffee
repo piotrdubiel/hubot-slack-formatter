@@ -41,3 +41,8 @@ describe "Slack", ->
       pretext: "Pretext"
       text: "text"
     attachment.fallback.should.eql "Pretext\n| text"
+
+  it "should prefix multiline text", ->
+    attachment = slack.attach
+      text: "text\na\nb\nc"
+    attachment.fallback.should.eql "| text\n| a\n| b\n| c"

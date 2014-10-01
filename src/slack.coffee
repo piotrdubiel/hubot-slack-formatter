@@ -11,9 +11,13 @@ attach = (attachment = {}) ->
   attachment.fallback ?= textify(attachment)
   return attachment
 
+line = (text) ->
+  text.split("\n").map((line) -> "| #{line}").join("\n")
+
+
 textify = (attachment) ->
   pretext = attachment?.pretext
-  text = if attachment.text then "| #{attachment.text}" else null
+  text = if attachment.text then line(attachment.text) else null
   fields = attachment?.fields?.map (field) ->
     rendered = "|  #{field.title}"
     if field.value
