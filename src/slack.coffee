@@ -14,13 +14,15 @@ attach = (attachment = {}) ->
 textify = (attachment) ->
   pretext = attachment?.pretext
   text = if attachment.text then "| #{attachment.text}" else null
-  fields = attachment?.fields.map (field) ->
+  fields = attachment?.fields?.map (field) ->
     rendered = "|  #{field.title}"
     if field.value
       rendered += "\n|  #{field.value}"
     return rendered
   
-  [pretext, text, fields.join "\n"].join "\n"
+  [pretext, text, fields?.join "\n"]
+    .filter (item) -> item
+    .join "\n"
 
 
 module.exports =

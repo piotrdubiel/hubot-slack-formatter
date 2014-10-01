@@ -25,7 +25,7 @@ describe "Slack", ->
   it "should format urls without title", ->
     slack.link("http://www.x.com").should.eql "http://www.x.com"
 
-  it "should provide defualt fallback", ->
+  it "should provide default fallback", ->
     attachment = slack.attach
       pretext: "Pretext"
       text: "text"
@@ -35,3 +35,9 @@ describe "Slack", ->
       ]
 
     attachment.fallback.should.eql "Pretext\n| text\n|  T1\n|  V1\n|  T2\n|  V2"
+
+  it "should accept no fields", ->
+    attachment = slack.attach
+      pretext: "Pretext"
+      text: "text"
+    attachment.fallback.should.eql "Pretext\n| text"
