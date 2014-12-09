@@ -18,9 +18,9 @@ construct = (formatter) ->
   type:     formatter.type
 
 using = (robot) ->
-  if robot?.adapter?.constructor.name is "Slack" or
+  if /slack/i.test(robot?.adapter?.constructor.name) or
   robot?.adapter?.constructor.name is "AdapterProxy" and
-  robot?.adapter?.config.adapter.constructor.name is "Slack"
+  /slack/i.test(robot?.adapter?.config.adapter.constructor.name)
     construct(require "./src/slack")
   else
     construct(require "./src/fallback")

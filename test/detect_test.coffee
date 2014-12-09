@@ -4,6 +4,8 @@ should = require "should"
 
 describe "Slack or fallback", ->
   class Slack
+  
+  class SlackBot
     
   class Shell
   
@@ -13,6 +15,12 @@ describe "Slack or fallback", ->
     formatter = require("../index").using(robot)
     formatter.type.should.eql "full"
   
+  it "should return rich format for new Slack adapter", ->
+    robot =
+      adapter: new SlackBot()
+    formatter = require("../index").using(robot)
+    formatter.type.should.eql "full"
+
   it "should return fallback format for any other adapter", ->
     robot =
       adapter: new Shell()
@@ -36,5 +44,11 @@ describe "Slack or fallback", ->
   it "should return rich format for AdapterProxy if it proxy to Slack", ->
     robot =
       adapter: new AdapterProxy(new Slack)
+    formatter = require("../index").using(robot)
+    formatter.type.should.eql "full"
+
+  it "should return rich format for AdapterProxy if it proxy to new Slack", ->
+    robot =
+      adapter: new AdapterProxy(new SlackBot)
     formatter = require("../index").using(robot)
     formatter.type.should.eql "full"
