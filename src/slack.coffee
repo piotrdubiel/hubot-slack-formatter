@@ -15,6 +15,7 @@ attach = (attachment = {}) ->
 textify = (attachment) ->
   pretext = attachment?.pretext
   text = attachment?.text
+  image_url = attachment?.image_url
   fields = attachment?.fields?.map (field) ->
     rendered = "  #{field.title}"
     if field.value
